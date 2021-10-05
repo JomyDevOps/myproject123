@@ -4,7 +4,7 @@ pipeline{
     stages{
         stage("Git Checkout"){
             steps{
-                git url: 'https://github.com/JomyDevOps/SpringBootFirstApp.git'
+                git url: 'https://github.com/JomyDevOps/SpringBootFirstApp.git',branches: ${BRANCH_NAME}
             }
         }
     stage("Build"){
