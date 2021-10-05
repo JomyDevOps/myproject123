@@ -1,10 +1,14 @@
 pipeline{
     agent any
 
+    options{
+        parallelsAlwaysFailFast()
+    }
+
     stages{
         stage("Git Checkout"){
             steps{
-                git url: 'https://github.com/JomyDevOps/SpringBootFirstApp.git',branch: "${BRANCH_NAME}"
+                git url: 'https://github.com/JomyDevOps/SpringBootFirstApp.git'
             }
         }
     stage("Build"){
