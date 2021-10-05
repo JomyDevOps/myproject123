@@ -29,9 +29,46 @@ pipeline{
                 )
             }
         }
-    stage("Deploy"){
+    stage("CD - Dev"){
             steps{
-                echo "Deploy Steps"
+                echo "Dev Deploy Steps"
+            }
+        }
+    stage("CD - QA"){
+        when {
+            anyOf{
+                branch 'develop'
+                branch 'release-*'
+                branch 'release/*'
+                branch 'master'
+            }
+        }
+            steps{
+                echo "QA Deploy Steps"
+            }
+        }
+    stage("CD - Stage"){
+        when {
+            anyOf{
+                branch 'release-*'
+                branch 'release/*'
+                branch 'master'
+            }
+        }
+            steps{
+                echo "Stage Deploy Steps"
+            }
+        }
+    stage("CD - Prod"){
+        when {
+            anyOf{
+                branch 'release-*'
+                branch 'release/*'
+                branch 'master'
+            }
+        }
+            steps{
+                echo "Prod Deploy Steps"
             }
         }
     }
